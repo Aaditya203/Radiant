@@ -44,3 +44,6 @@ skills-lock.json
 
 # Scratch / temp files
 css_chunk.txt
+
+# Raw source assets (converted versions live in apps/web/public/images/)
+assets/
