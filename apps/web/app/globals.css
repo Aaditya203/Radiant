@@ -1,30 +1,72 @@
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-cream: #FBF5EA;
+  --color-sand: #F2E8D5;
+  --color-ink: #1E1B16;
+  --color-persimmon: #D6431D;
+  --color-banyan: #1D3B2F;
+  --color-sunflower: #F2B632;
+  --color-clay: #EFB8A5;
+
+  --font-heading: var(--f-fraunces), var(--f-noto-serif-devanagari), serif;
+  --font-body: var(--f-figtree), var(--f-noto-sans-devanagari), sans-serif;
+  --font-accent: var(--f-caveat), cursive;
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+  --font-hand: var(--font-accent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-}
+html[data-font="default"] { --font-heading: var(--f-fraunces), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-figtree), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="playfair-inter"] { --font-heading: var(--f-playfair), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-inter), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="dm-serif-dm-sans"] { --font-heading: var(--f-dm-serif), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-dm-sans), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="lora-nunito"] { --font-heading: var(--f-lora), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-nunito), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="merriweather-source-sans"] { --font-heading: var(--f-merriweather), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-source-sans), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="cormorant-montserrat"] { --font-heading: var(--f-cormorant), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-montserrat), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="libre-lato"] { --font-heading: var(--f-libre), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-lato), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="space-work"] { --font-heading: var(--f-space), var(--f-noto-sans-devanagari), sans-serif; --font-body: var(--f-work-sans), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="bricolage-manrope"] { --font-heading: var(--f-bricolage), var(--f-noto-sans-devanagari), sans-serif; --font-body: var(--f-manrope), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="baloo-quicksand"] { --font-heading: var(--f-baloo), var(--f-noto-sans-devanagari), sans-serif; --font-body: var(--f-quicksand), var(--f-noto-sans-devanagari), sans-serif; }
+html[data-font="young-serif-outfit"] { --font-heading: var(--f-young-serif), var(--f-noto-serif-devanagari), serif; --font-body: var(--f-outfit), var(--f-noto-sans-devanagari), sans-serif; }
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+}
+
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+html[data-font="baloo-quicksand"] em,
+html[data-font="young-serif-outfit"] em {
+  color: var(--color-persimmon);
+  font-style: normal;
+  text-decoration: underline wavy var(--color-sunflower);
+  text-decoration-thickness: 2px;
+  text-underline-offset: .14em;
+}
+
+body.fontChanging { opacity: .72; transition: opacity 150ms ease; }
+body.fontChanged { opacity: 1; transition: opacity 150ms ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.fontChanging, body.fontChanged { transition: none; }
+}
+
+@media (max-width: 834px) {
+  body {
+    font-size: 17px;
+  }
 }
 
 a {
@@ -32,19 +74,26 @@ a {
   text-decoration: none;
 }
 
-.imgDark {
-  display: none;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
