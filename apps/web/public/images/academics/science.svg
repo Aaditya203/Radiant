@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Science flask illustration">
+  <rect width="480" height="360" rx="28" fill="#F2B632"/><circle cx="380" cy="77" r="41" fill="#FFF8EC" opacity=".65"/><path d="M0 290c110-52 201 51 480-37v107H0Z" fill="#2A9D8F"/>
+  <path d="M190 67h100M211 69v95l-70 119a18 18 0 0 0 16 27h166a18 18 0 0 0 16-27l-70-119V69" fill="#FFF8EC" stroke="#1f1f1f" stroke-width="12" stroke-linejoin="round"/>
+  <path d="m165 248 43-53h64l43 53a13 13 0 0 1-11 20H176a13 13 0 0 1-11-20Z" fill="#E05228"/><circle cx="226" cy="229" r="7" fill="#FFF8EC"/><circle cx="258" cy="247" r="6" fill="#FFF8EC"/>
+</svg>

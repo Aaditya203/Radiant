@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Language letters illustration">
+  <rect width="480" height="360" rx="28" fill="#2A9D8F"/><path d="M0 0h180L0 144Z" fill="#F2B632"/><path d="M320 360h160V200Z" fill="#E05228"/>
+  <rect x="88" y="77" width="304" height="206" rx="26" fill="#FFF8EC" stroke="#1f1f1f" stroke-width="8"/><text x="123" y="209" fill="#E05228" font-family="Georgia,serif" font-size="96" font-weight="bold">A</text><text x="220" y="209" fill="#1f1f1f" font-family="Georgia,serif" font-size="96" font-weight="bold">あ</text><text x="319" y="209" fill="#2A9D8F" font-family="Georgia,serif" font-size="96" font-weight="bold">字</text>
+  <path d="M128 251h224" stroke="#1f1f1f" stroke-width="7" stroke-linecap="round" opacity=".25"/>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Humanities open book illustration">
+  <rect width="480" height="360" rx="28" fill="#E05228"/><circle cx="393" cy="76" r="48" fill="#F2B632"/><path d="M0 282 480 214v146H0Z" fill="#FDE6D8"/>
+  <path d="M240 111c-53-37-116-39-158-16v157c49-24 108-19 158 18 50-37 109-42 158-18V95c-42-23-105-21-158 16Z" fill="#FFF8EC" stroke="#1f1f1f" stroke-width="10" stroke-linejoin="round"/><path d="M240 111v159" stroke="#1f1f1f" stroke-width="9"/>
+  <path d="M108 135c30-10 63-7 93 5m-93 27c30-10 63-7 93 5m-93 27c27-9 53-8 77 0m188-64c-30-10-63-7-93 5m93 27c-30-10-63-7-93 5m93 27c-27-9-53-8-77 0" stroke="#2A9D8F" stroke-width="7" stroke-linecap="round"/>
+</svg>

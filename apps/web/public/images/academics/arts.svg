@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Arts paint palette illustration">
+  <rect width="480" height="360" rx="28" fill="#FDE6D8"/><path d="M0 296 480 240v120H0Z" fill="#F2B632"/>
+  <path d="M236 65c-91 0-160 62-160 142 0 68 56 112 117 112 29 0 47-17 47-39 0-17-12-30-12-44 0-17 14-29 34-29h46c57 0 91-32 91-76 0-39-49-66-112-66Z" fill="#FFF8EC" stroke="#1f1f1f" stroke-width="11"/>
+  <circle cx="147" cy="157" r="17" fill="#E05228"/><circle cx="207" cy="115" r="17" fill="#F2B632"/><circle cx="278" cy="118" r="17" fill="#2A9D8F"/><circle cx="330" cy="160" r="17" fill="#1f1f1f"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Technology circuit illustration">
+  <rect width="480" height="360" rx="28" fill="#1f1f1f"/><path d="M0 275 480 205v155H0Z" fill="#2F5D50"/>
+  <rect x="149" y="79" width="182" height="182" rx="24" fill="#FFF8EC" stroke="#F2B632" stroke-width="9"/><rect x="184" y="115" width="112" height="109" rx="13" fill="#2A9D8F"/>
+  <path d="M184 91V53m37 38V53m38 38V53m37 38V53M184 260v39m37-39v39m38-39v39m37-39v39m-186-183h39m-39 38h39m-39 38h39m-39 38h39m182-114h39m-39 38h39m-39 38h39m-39 38h39" stroke="#E05228" stroke-width="9" stroke-linecap="round"/>
+  <path d="m207 188 22-29 19 17 23-33" fill="none" stroke="#FFF8EC" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
