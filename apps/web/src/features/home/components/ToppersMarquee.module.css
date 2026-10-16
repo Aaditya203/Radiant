@@ -1,0 +1,56 @@
+.section {
+  padding: clamp(64px, 8vw, 112px) 24px;
+  background: var(--color-sunflower, #F2B632);
+  border-block: 1px solid var(--color-ink, #1f1f1f);
+}
+
+.container { width: min(100%, 1260px); margin-inline: auto; }
+.header { max-width: 680px; margin: 0 auto 54px; text-align: center; }
+.eyebrow, .cardEyebrow { display: block; font-family: var(--font-sans); font-size: 11px; font-weight: 800; letter-spacing: .12em; line-height: 1.45; text-transform: uppercase; }
+.eyebrow { color: #7a321d; }
+.title { margin: 10px 0 12px; color: var(--color-ink, #1f1f1f); font-family: var(--font-serif); font-size: clamp(36px, 5vw, 58px); font-weight: 500; line-height: 1.05; }
+.intro { max-width: 560px; margin: 0 auto; color: rgb(31 31 31 / 75%); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; }
+.groupTitle { margin: 0 0 20px; color: var(--color-ink, #1f1f1f); font-family: var(--font-serif); font-size: clamp(24px, 3vw, 32px); font-weight: 500; }
+.studentGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-bottom: 58px; }
+.studentCard, .publicCard { min-width: 0; overflow: hidden; border: 1.5px solid var(--color-ink, #1f1f1f); border-radius: 18px; background: #fff8ec; box-shadow: 5px 5px 0 var(--color-ink, #1f1f1f); transition: transform 200ms ease, box-shadow 200ms ease; }
+.studentCard { display: grid; grid-template-columns: minmax(112px, 38%) 1fr; min-height: 246px; }
+.studentCard:hover, .publicCard:hover { transform: translateY(-4px); box-shadow: 8px 8px 0 var(--color-ink, #1f1f1f); }
+.featuredCard { background: #fff1c9; }
+.portrait { position: relative; min-height: 246px; overflow: hidden; background: #f6dec6; }
+.portrait img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 24%; }
+.studentInfo { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-width: 0; padding: 18px 16px 18px 20px; }
+.cardEyebrow { color: #8f4028; font-size: 9px; letter-spacing: .09em; }
+.studentName { margin: 7px 0 4px; color: var(--color-ink, #1f1f1f); font-family: var(--font-serif); font-size: clamp(17px, 1.6vw, 22px); font-weight: 600; line-height: 1.15; }
+.percentage { color: #b33b22; font-family: var(--font-serif); font-size: clamp(30px, 3vw, 40px); line-height: 1.05; }
+.result { margin: 8px 0 0; color: rgb(31 31 31 / 75%); font-family: var(--font-sans); font-size: 13px; line-height: 1.45; }
+.publicGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.publicCard { display: flex; flex-direction: column; }
+.publicImage { position: relative; aspect-ratio: 1.4; overflow: hidden; background: #f6dec6; }
+.publicImage img { width: 100%; height: 100%; object-fit: cover; transition: transform 350ms ease; }
+.publicCard:hover .publicImage img { transform: scale(1.025); }
+.illustrativeTag { position: absolute; right: 10px; bottom: 10px; border: 1px solid rgb(31 31 31 / 65%); border-radius: 6px; padding: 5px 8px; color: var(--color-ink, #1f1f1f); background: #fff8ec; font-family: var(--font-sans); font-size: 10px; font-weight: 700; }
+.publicInfo { flex: 1; padding: 20px; }
+.publicInfo .studentName { font-size: 24px; }
+.sourceLink { display: inline-block; margin-top: 14px; color: #9a341d; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sourceLink:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+@media (max-width: 1050px) {
+  .studentGrid, .publicGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .studentCard { grid-template-columns: minmax(112px, 36%) 1fr; }
+}
+
+@media (max-width: 620px) {
+  .section { padding-inline: 16px; }
+  .header { margin-bottom: 38px; }
+  .studentGrid, .publicGrid { grid-template-columns: 1fr; gap: 16px; }
+  .studentGrid { margin-bottom: 42px; }
+  .studentCard { grid-template-columns: minmax(112px, 38%) 1fr; min-height: 220px; }
+  .portrait { min-height: 220px; }
+  .studentInfo { padding: 16px 14px; }
+  .publicInfo { padding: 18px; }
+  .studentName { overflow-wrap: anywhere; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studentCard, .publicCard, .publicImage img { transition: none; }
+}
