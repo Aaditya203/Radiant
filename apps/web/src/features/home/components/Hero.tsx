@@ -74,24 +74,26 @@ export const Hero = () => {
     setReducedMotion(media.matches);
     const onMotionChange = () => setReducedMotion(media.matches);
     media.addEventListener("change", onMotionChange);
+    const mobileImageScale = window.matchMedia("(max-width: 767px)").matches ? 1.04 : 1.08;
 
     const ctx = gsap.context(() => {
       const contents = contentRefs.current.filter(Boolean) as HTMLDivElement[];
       const images = imageRefs.current.filter(Boolean) as HTMLImageElement[];
       const slideNodes = slideRefs.current.filter(Boolean) as HTMLElement[];
+      const initialIndex = currentRef.current;
       gsap.set(slideNodes, { autoAlpha: 0, zIndex: 0 });
       gsap.set(contents, { autoAlpha: 0, y: 18 });
-      if (slideRefs.current[0]) gsap.set(slideRefs.current[0], { autoAlpha: 1, zIndex: 1 });
-      if (contentRefs.current[0]) gsap.set(contentRefs.current[0], { autoAlpha: 1, y: 0 });
-      if (images[0]) gsap.set(images[0], { scale: 1.08 });
+      if (slideRefs.current[initialIndex]) gsap.set(slideRefs.current[initialIndex], { autoAlpha: 1, zIndex: 1 });
+      if (contentRefs.current[initialIndex]) gsap.set(contentRefs.current[initialIndex], { autoAlpha: 1, y: 0 });
+      if (images[initialIndex]) gsap.set(images[initialIndex], { scale: mobileImageScale });
       if (reducedMotion) {
         gsap.set(images, { scale: 1 });
         gsap.set(contents, { clearProps: "transform" });
       } else {
-        if (images[0]) kenBurnsRef.current = gsap.to(images[0], { scale: 1, duration: 7, ease: "none" });
-        const firstWords = contents[0]?.querySelectorAll(`.${styles.headlineWord}`);
+        if (images[initialIndex]) kenBurnsRef.current = gsap.to(images[initialIndex], { scale: 1, duration: 7, ease: "none" });
+        const firstWords = contents[initialIndex]?.querySelectorAll(`.${styles.headlineWord}`);
         if (firstWords?.length) {
-          transitionRef.current = gsap.timeline({ onComplete: () => { gsap.set(firstWords, { clearProps: "transform" }); if (contents[0]) gsap.set(contents[0], { clearProps: "transform" }); } })
+          transitionRef.current = gsap.timeline({ onComplete: () => { gsap.set(firstWords, { clearProps: "transform" }); if (contents[initialIndex]) gsap.set(contents[initialIndex], { clearProps: "transform" }); } })
             .fromTo(firstWords, { y: 28 }, { y: 0, duration: 0.62, stagger: 0.05, ease: "power3.out", overwrite: "auto" });
         }
       }
@@ -103,7 +105,7 @@ export const Hero = () => {
     };
 
     const setPlayback = () => {
-      const shouldPause = reasonsRef.current.size > 0 || manualPauseRef.current || !visibleRef.current || reducedMotion;
+      const shouldPause = reasonsRef.current.size > 0 || manualPauseRef.current || !visibleRef.current;
       pausedRef.current = shouldPause;
       if (shouldPause) {
         timerRef.current?.pause();
@@ -117,10 +119,10 @@ export const Hero = () => {
     const schedule = () => {
       timerRef.current?.kill();
       progressTweenRef.current?.kill();
-      if (slides.length < 2 || reducedMotion) return;
+      if (slides.length < 2) return;
       if (progressRef.current) {
         gsap.set(progressRef.current, { scaleX: 0, transformOrigin: "left center" });
-        progressTweenRef.current = gsap.to(progressRef.current, { scaleX: 1, duration: AUTO_MS / 1000, ease: "none" });
+        if (!reducedMotion) progressTweenRef.current = gsap.to(progressRef.current, { scaleX: 1, duration: AUTO_MS / 1000, ease: "none" });
       }
       timerRef.current = gsap.delayedCall(AUTO_MS / 1000, () => changeSlide((currentRef.current + 1) % slides.length));
       setPlayback();
@@ -152,13 +154,13 @@ export const Hero = () => {
           },
         });
         transitionRef.current = timeline;
-        timeline.to(oldContent, { autoAlpha: 0, y: -16, duration: reducedMotion ? 0 : 0.3, ease: "power2.out", overwrite: "auto" });
+        timeline.to(oldContent, { autoAlpha: 0, y: reducedMotion ? 0 : -16, duration: reducedMotion ? 0 : 0.3, ease: "power2.out", overwrite: "auto" });
         timeline.set(newSlide, { zIndex: 2, autoAlpha: 1 }, "<");
         timeline.set(oldSlide, { zIndex: 1 }, "<");
-        timeline.fromTo(newSlide, { autoAlpha: 0 }, { autoAlpha: 1, duration: reducedMotion ? 0 : 0.7, ease: "power1.out" }, "<");
-        timeline.to(oldSlide, { autoAlpha: 0, duration: reducedMotion ? 0 : 0.7, ease: "power1.out" }, "<");
-        if (newImage && !reducedMotion) kenBurnsRef.current = gsap.fromTo(newImage, { scale: 1.08 }, { scale: 1, duration: 7, ease: "none", overwrite: "auto" });
-        timeline.fromTo(newContent, { autoAlpha: 0, y: reducedMotion ? 0 : 20 }, { autoAlpha: 1, y: 0, duration: reducedMotion ? 0 : 0.45, ease: "power3.out" }, 0.3);
+        timeline.fromTo(newSlide, { autoAlpha: 0 }, { autoAlpha: 1, duration: reducedMotion ? 0.2 : 0.7, ease: "power1.out" }, "<");
+        timeline.to(oldSlide, { autoAlpha: 0, duration: reducedMotion ? 0.2 : 0.7, ease: "power1.out" }, "<");
+        if (newImage && !reducedMotion) kenBurnsRef.current = gsap.fromTo(newImage, { scale: mobileImageScale }, { scale: 1, duration: 7, ease: "none", overwrite: "auto" });
+        timeline.fromTo(newContent, { autoAlpha: 0, y: reducedMotion ? 0 : 20 }, { autoAlpha: 1, y: 0, duration: reducedMotion ? 0.2 : 0.45, ease: reducedMotion ? "power1.out" : "power3.out" }, reducedMotion ? 0 : 0.3);
         const words = newContent.querySelectorAll(`.${styles.headlineWord}`);
         if (words.length && !reducedMotion) timeline.fromTo(words, { y: 24 }, { y: 0, duration: 0.55, stagger: 0.05, ease: "power3.out", overwrite: "auto" }, 0.3);
       });
@@ -177,7 +179,7 @@ export const Hero = () => {
     const onVisibility = () => setPauseReason("hidden", document.hidden);
     document.addEventListener("visibilitychange", onVisibility);
     setPauseReason("hidden", document.hidden);
-    preloadNext(0);
+    preloadNext(currentRef.current);
     schedule();
 
     return () => {
@@ -219,7 +221,7 @@ export const Hero = () => {
   const onPointerDown = (event: import("react").PointerEvent<HTMLElement>) => { pointerStartRef.current = event.clientX; };
   const onPointerUp = (event: import("react").PointerEvent<HTMLElement>) => {
     const delta = event.clientX - (pointerStartRef.current ?? event.clientX);
-    if (Math.abs(delta) > 55) goTo(active + (delta < 0 ? 1 : -1));
+    if (Math.abs(delta) > 50) goTo(active + (delta < 0 ? 1 : -1));
     pointerStartRef.current = null;
   };
 
@@ -231,9 +233,9 @@ export const Hero = () => {
       aria-roledescription="carousel"
       aria-label="Radiant Public School highlights"
       tabIndex={0}
-      onPointerEnter={() => setPauseReason("hover", true)}
-      onPointerLeave={() => { setPauseReason("hover", false); setPauseReason("interaction", false); }}
-      onFocusCapture={() => setPauseReason("focus", true)}
+      onPointerEnter={(event) => { if (window.matchMedia("(hover: hover)").matches && event.pointerType !== "touch") setPauseReason("hover", true); }}
+      onPointerLeave={(event) => { if (window.matchMedia("(hover: hover)").matches && event.pointerType !== "touch") setPauseReason("hover", false); setPauseReason("interaction", false); }}
+      onFocusCapture={(event) => { if (event.target instanceof HTMLElement && event.target.matches(":focus-visible")) setPauseReason("focus", true); }}
       onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPauseReason("focus", false); }}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
@@ -259,7 +261,7 @@ export const Hero = () => {
       <div className={styles.bottomShade} aria-hidden="true" />
 
       {slides.map((slide, index) => (
-        <div key={`${slide.id}-content`} className={styles.contentWrap} style={{ zIndex: 5 }}>
+        <div key={`${slide.id}-content`} className={styles.contentWrap} style={{ zIndex: 5 }} data-active={active === index}>
           <div ref={(element) => { contentRefs.current[index] = element; }} className={styles.content}>
             <div className={styles.badge}><span className={styles.badgeMark}>✳</span>{slide.eyebrow ?? "RADIANT PUBLIC SCHOOL · BHELDI"}</div>
             <h1 aria-label={slide.headline}>{renderHeadline(slide)}</h1>
@@ -285,11 +287,11 @@ export const Hero = () => {
         <div className={styles.controls}>
           <div className={styles.indicators}>{slides.map((slide, index) => <button key={slide.id} type="button" aria-label={`Show slide ${index + 1}`} aria-current={active === index ? "true" : undefined} onClick={() => goTo(index)} />)}</div>
           <span className={styles.counter}>0{active + 1} <i>/</i> 0{slides.length}</span>
-          {!reducedMotion && <button className={styles.pause} type="button" aria-label={manualPause ? "Play slides" : "Pause slides"} onClick={setManualPaused}>{manualPause ? <Play size={13} /> : <Pause size={13} />}</button>}
+          <button className={styles.pause} type="button" aria-label={manualPause ? "Play slides" : "Pause slides"} onClick={setManualPaused}>{manualPause ? <Play size={13} /> : <Pause size={13} />}</button>
         </div>
       </>}
       <div className={styles.progressTrack} aria-hidden="true"><div ref={progressRef} className={styles.progress} /></div>
-      <div className={styles.announcement}><span>Radiant Public School · Bheldi<span className={styles.announcementSecondary}><b>|</b> Saran, Bihar</span></span><a href="#admissions">Book a visit <span aria-hidden="true">→</span></a></div>
+      <div className={styles.announcement}><span className={styles.announcementLocation}>Radiant Public School<span className={styles.announcementBheldi}> · Bheldi</span><span className={styles.announcementSecondary}><b>|</b> Saran, Bihar</span></span><a href="#admissions">Book a visit <span aria-hidden="true">→</span></a></div>
     </section>
   );
 };

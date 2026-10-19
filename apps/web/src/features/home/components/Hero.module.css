@@ -95,3 +95,83 @@
 @media (prefers-reduced-motion: reduce) {
   .actions a, .arrows button, .pause, .indicators button { transition: none; }
 }
+
+@media (max-width: 767px) {
+  .hero {
+    height: calc(100dvh - var(--header-h, 56px)) !important;
+    min-height: 520px !important;
+    max-height: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .contentWrap {
+    inset: 0;
+    align-items: flex-end;
+  }
+  .contentWrap[data-active="false"] { visibility: hidden !important; pointer-events: none !important; }
+  .contentWrap[data-active="true"] { visibility: visible; }
+  .content { padding: clamp(20px, 4vh, 32px) 16px clamp(60px, 8vh, 80px) !important; }
+  .badge {
+    max-width: 100%; flex-wrap: wrap; gap: 6px 8px; margin-bottom: 16px;
+    padding: 7px 10px; font-size: 11px; line-height: 1.25;
+  }
+  .content h1 {
+    min-height: 3.3em; max-width: 100%; margin-bottom: 14px;
+    font-size: clamp(1.75rem, 8vw, 2.5rem); line-height: 1.1;
+    overflow-wrap: break-word; text-wrap: balance;
+  }
+  .content p { max-width: 100%; margin-bottom: 18px; font-size: 15px; }
+  .actions {
+    width: 100%; flex-direction: column; align-items: stretch; gap: 12px;
+    margin-bottom: 0; padding: 0 5px 5px 0;
+  }
+  .actions a { width: 100%; min-height: 48px; border-radius: 8px; }
+  .arrows { display: none; }
+  .controls {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
+    justify-content: space-between; gap: 12px;
+  }
+  .indicators { gap: 6px; }
+  .indicators button { width: 7px; height: 7px; }
+  .pause { width: 44px; height: 44px; flex: 0 0 44px; }
+  .progressTrack { bottom: 0; }
+  .announcement { display: none !important; }
+
+  .imageLayer img {
+    object-fit: cover;
+    object-position: center 30% !important;
+    image-rendering: auto;
+    filter: none;
+  }
+  .overlay {
+    background: linear-gradient(180deg, rgb(0 0 0 / 8%) 0%, rgb(0 0 0 / 2%) 38%, rgb(0 0 0 / 34%) 55%, rgb(0 0 0 / 52%) 100%);
+  }
+  .scrim { background: rgb(0 0 0 / 4%); }
+  .topShade { height: 110px; background: linear-gradient(180deg, rgb(0 0 0 / 24%), transparent); }
+  .bottomShade { height: 55%; background: linear-gradient(0deg, rgb(0 0 0 / 38%), transparent); }
+}
+
+@media (max-width: 360px) {
+  .announcementBheldi { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+}
+
+@media (max-width: 400px) {
+  .content { padding-inline: 14px; }
+  .controls { gap: 8px; }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .hero {
+    height: auto !important;
+    min-height: 520px !important;
+  }
+  .content { padding: 16px 16px 72px !important; }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .contentWrap, .contentWrap[data-active="false"] { transition: none !important; }
+  .content h1, .actions a, .arrows button, .pause, .indicators button { transition: none !important; }
+}

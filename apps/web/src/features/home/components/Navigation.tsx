@@ -31,6 +31,15 @@ export const Navigation = ({ hero = "light" }: { hero?: "dark" | "light" }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mobileOpen]);
+
   return (
     <div className={styles.navWrapper}>
       <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : styles.navTransparent}`} data-hero={hero} data-scrolled={scrolled}>
