@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Fraunces, Figtree, Caveat,
   Playfair_Display, Inter, DM_Serif_Display, DM_Sans, Lora, Nunito,
@@ -41,6 +41,11 @@ export const metadata: Metadata = {
   description: "Welcome to Radiant Public School in Bheldi, Saran, Bihar.",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 const fontVariables = [
   fraunces, figtree, caveat, playfair, inter, dmSerif, dmSans, lora, nunito,
   merriweather, sourceSans, cormorant, montserrat, libre, lato, space, workSans,
@@ -48,14 +53,9 @@ const fontVariables = [
   notoSansDevanagari,
 ].map((font) => font.variable).join(" ");
 
-const fontPreferenceScript = `try { var savedFont = localStorage.getItem('rps-font'); if (savedFont) document.documentElement.dataset.font = savedFont; } catch (_) {}`;
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-font="default" className={fontVariables} suppressHydrationWarning>
-      <head>
-        <script id="font-preference" dangerouslySetInnerHTML={{ __html: fontPreferenceScript }} />
-      </head>
       <body>
         <SmoothScrolling>{children}</SmoothScrolling>
       </body>

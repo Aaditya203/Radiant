@@ -97,3 +97,131 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+/* ==========================================================================
+   GLOBAL MOBILE-ONLY SYSTEM (max-width: 767px)
+   Does NOT alter desktop screens (>= 768px).
+   ========================================================================== */
+@media (max-width: 767px) {
+  :root {
+    --header-h: 56px;
+    --fs-display: clamp(1.6rem, 6.5vw, 2rem);    /* big section statement headings */
+    --fs-h2:      clamp(1.4rem, 5.8vw, 1.75rem);
+    --fs-h3:      clamp(1.1rem, 4.6vw, 1.3rem);
+    --fs-body:    15px;                         /* line-height 1.55 */
+    --fs-small:   13px;
+    --fs-eyebrow: 11px;                         /* letter-spacing 0.12em, uppercase */
+  }
+
+  html {
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    min-height: 100dvh;
+    background-color: var(--color-cream);
+  }
+
+  body {
+    overflow-x: hidden !important;
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--header-h) !important; /* EXACTLY ONE offset mechanism for fixed header */
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    background-color: var(--color-cream);
+  }
+
+  body::after {
+    content: "";
+    display: block;
+    background-color: var(--color-banyan);
+    height: env(safe-area-inset-bottom, 0px);
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  main {
+    flex: 1 0 auto;
+    width: 100%;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  footer {
+    flex-shrink: 0;
+  }
+
+  /* Global Section Spacing */
+  main > section:not([class*="hero"]):not([id="achievements"]) {
+    padding-block: 36px;
+    padding-inline: 16px;
+    min-height: auto;
+  }
+
+  /* Container Spacing */
+  main .container,
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-inline: 0 !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+  }
+
+  /* Typography Defaults for Content Sections (Excluding Hero, Achievements, Footer) */
+  main > *:not([class*="hero"]):not([id="achievements"]) h1,
+  main > *:not([class*="hero"]):not([id="achievements"]) h2 {
+    font-size: var(--fs-display);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin-block: 8px 12px;
+  }
+
+  main > *:not([class*="hero"]):not([id="achievements"]) h3 {
+    font-size: var(--fs-h2);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin-block: 6px 10px;
+  }
+
+  main > *:not([class*="hero"]):not([id="achievements"]) h4 {
+    font-size: var(--fs-h3);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-block: 4px 8px;
+  }
+
+  main > *:not([class*="hero"]):not([id="achievements"]) p {
+    font-size: var(--fs-body);
+    max-width: 100%;
+    margin-bottom: 12px;
+    text-wrap: pretty;
+    line-height: 1.55;
+  }
+
+  /* Anchors and sections scroll offset */
+  section[id], div[id], [id] {
+    scroll-margin-top: var(--header-h) !important;
+  }
+
+  /* Minimum touch target accessibility */
+  a, button, input, select {
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 380px) {
+  main > section:not([class*="hero"]):not([id="achievements"]) {
+    padding-inline: 14px;
+  }
+}
+
