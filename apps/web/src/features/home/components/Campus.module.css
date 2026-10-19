@@ -107,29 +107,107 @@
   .carouselProgress > span { display: block; width: 100%; height: 100%; background: #f2b632; transform-origin: left; transition: transform 150ms linear; }
 }
 
-@media (max-width: 640px) {
-  .campusSection { scroll-margin-top: 88px; }
-  .campusSection { padding-bottom: 112px; }
-  .campusHeader { grid-template-columns: 1fr; gap: 20px; }
-  .campusIntro { justify-self: start; }
-  .campusIntro > p { margin-bottom: 12px; }
-  .campusHero { aspect-ratio: 16 / 10; min-height: 0; margin-bottom: 136px; border-radius: 20px; }
-  .heroPhoto { border-radius: 18px; }
-  .heroChip { gap: 6px; padding: 8px 10px; font-size: 10px; }
-  .chipCctv { top: 8%; left: 4%; }
-  .chipWifi { top: 18%; right: 4%; }
-  .chipGreen { bottom: 12%; left: 5%; }
-  .statsCard { right: 0; bottom: -106px; left: 0; grid-template-columns: repeat(2, 1fr); border-radius: 14px; }
-  .stat { min-height: 82px; padding: 12px 8px; }
-  .stat:nth-child(3) { border-left: 0; border-top: 1px solid rgb(31 31 31 / 18%); }
-  .stat:nth-child(4) { border-top: 1px solid rgb(31 31 31 / 18%); }
-  .statLabel { font-size: 8px; letter-spacing: .05em; }
-  .facilitiesSection { margin-inline: -24px; }
-  .facilitiesHeader { align-items: center; padding-inline: 24px; }
-  .carouselControls button { width: 38px; height: 38px; }
-  .facilitiesTrack { min-height: 360px; gap: 12px; padding-inline: 24px; }
-  .facilityPanel, .facilityPanel:hover, .facilityActive { flex-basis: 78vw; height: 360px; border-radius: 20px; }
-  .campusCtaWrap { margin-top: 42px; }
+@media (max-width: 767px) {
+  .campusSection {
+    scroll-margin-top: 64px !important;
+    padding-block: 36px 48px !important;
+  }
+  .campusInner {
+    padding-inline: 16px !important;
+    width: 100% !important;
+  }
+  .campusHeader {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+  }
+  .campusEyebrow {
+    font-size: var(--fs-eyebrow, 11px) !important;
+    margin-bottom: 6px !important;
+    letter-spacing: 0.12em !important;
+  }
+  .campusTitle {
+    font-size: var(--fs-display, clamp(1.6rem, 6.5vw, 2rem)) !important;
+    line-height: 1.15 !important;
+  }
+  .campusIntro {
+    justify-self: start !important;
+    width: 100% !important;
+  }
+  .campusIntro > p {
+    font-size: var(--fs-body, 15px) !important;
+    margin-bottom: 8px !important;
+  }
+  .campusHero {
+    aspect-ratio: 16 / 10 !important;
+    min-height: 0 !important;
+    margin-bottom: 16px !important;
+    border-radius: 16px !important;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.25) !important;
+  }
+  .heroPhoto {
+    border-radius: 14px !important;
+  }
+  .heroChips {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    position: static !important;
+    padding: 8px !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+  }
+  .heroChip {
+    position: static !important;
+    transform: none !important;
+    animation: none !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+  }
+  .facilitiesSection {
+    margin-inline: -16px !important;
+    margin-top: 14px !important;
+  }
+  .facilitiesHeader {
+    align-items: center !important;
+    padding-inline: 16px !important;
+    margin-bottom: 10px !important;
+  }
+  .carouselControls button {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .facilitiesTrack {
+    min-height: 270px !important;
+    gap: 12px !important;
+    padding-inline: 16px !important;
+  }
+  .facilityPanel, .facilityPanel:hover, .facilityActive {
+    flex-basis: 82vw !important;
+    height: 270px !important;
+    border-radius: 16px !important;
+  }
+  .facilityContent h3 {
+    font-size: 18px !important;
+  }
+  .facilityContent p {
+    font-size: 12px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  .campusCtaWrap {
+    margin-top: 24px !important;
+    gap: 10px !important;
+  }
+  .campusCta {
+    width: 100% !important;
+    min-height: 48px !important;
+    justify-content: center !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -47,11 +47,13 @@ export const ChatWidget = () => {
       ]);
     }
     
-    if (!sessionStorage.getItem("radiant_chat_nudge")) {
+    let shouldShowNudge = false;
+    try { shouldShowNudge = !sessionStorage.getItem("radiant_chat_nudge"); } catch { /* Storage can be disabled on mobile. */ }
+    if (shouldShowNudge) {
       const timer = setTimeout(() => {
         if (!isOpen && !hasOpenedOnce) {
           setShowNudge(true);
-          sessionStorage.setItem("radiant_chat_nudge", "true");
+          try { sessionStorage.setItem("radiant_chat_nudge", "true"); } catch { /* Storage can be disabled on mobile. */ }
         }
       }, 8000);
       return () => clearTimeout(timer);
@@ -138,7 +140,7 @@ export const ChatWidget = () => {
     setMessages([{ id: Date.now().toString(), sender: "bot", text: "Hi! I'm the Radiant School assistant. Ask me about admissions, fees, timings or contact details.", timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
     setChips(DEFAULT_CHIPS);
     setMenuOpen(false);
-    sessionStorage.removeItem("radiant_chat");
+    try { sessionStorage.removeItem("radiant_chat"); } catch { /* Storage can be disabled on mobile. */ }
   };
 
   return (
@@ -448,6 +450,30 @@ export const ChatWidget = () => {
             opacity: 1;
             pointer-events: auto;
           }
+        }
+
+        @media (max-width: 767px) {
+          .chat-widget-btn.is-closed {
+            right: calc(16px + env(safe-area-inset-right));
+            bottom: calc(16px + env(safe-area-inset-bottom));
+            width: 48px;
+            height: 48px;
+            border-radius: 50% !important;
+            padding: 0;
+            gap: 0;
+            font-size: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+          }
+          .chat-widget-btn.is-closed svg {
+            width: 22px;
+            height: 22px;
+            margin: 0;
+          }
+          .unread-dot { top: 2px; right: 2px; }
         }
       `}} />
 

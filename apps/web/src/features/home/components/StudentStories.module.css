@@ -63,12 +63,125 @@
   .quoteCard p { font-size: clamp(30px, 8vw, 46px); }
   .quoteMark { top: -34px; left: -8px; font-size: 90px; }
 }
-@media (max-width: 520px) {
-  .section { padding-block: 84px 64px; }
-  .inner { width: calc(100% - 40px); }
-  .eyebrow { font-size: 12px; margin-bottom: 12px; }
-  .titleBlock h2 { font-size: clamp(2rem, 9vw, 3.5rem); }
-  .photoColumn { width: min(82vw, 330px); }
+@media (max-width: 767px) {
+  .section {
+    height: auto !important;
+    min-height: auto !important;
+    padding-block: 36px !important;
+    padding-top: 36px !important;
+    overflow: hidden !important;
+  }
+  .inner {
+    width: 100% !important;
+    padding-inline: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    margin-bottom: 18px !important;
+    gap: 8px !important;
+  }
+  .titleBlock h2 {
+    font-size: var(--fs-display, clamp(1.6rem, 6.5vw, 2rem)) !important;
+    line-height: 1.15 !important;
+  }
+  .eyebrow {
+    font-size: var(--fs-eyebrow, 11px) !important;
+    margin-bottom: 6px !important;
+    letter-spacing: 0.12em !important;
+  }
+  .intro {
+    width: 100% !important;
+  }
+  .intro p {
+    font-size: var(--fs-body, 15px) !important;
+    margin-bottom: 12px !important;
+  }
+  .controls {
+    display: none !important;
+  }
+  .deck {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 12px !important;
+    padding-bottom: 12px !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .deck::-webkit-scrollbar {
+    display: none !important;
+  }
+  .storyWrapper {
+    flex: 0 0 84vw !important;
+    max-width: 84vw !important;
+    scroll-snap-align: start !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    background: #fff8ec !important;
+    border: 1.5px solid #1f1f1f !important;
+    border-radius: 14px !important;
+    padding: 16px !important;
+    box-shadow: 4px 4px 0 #1f1f1f !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    margin-bottom: 0 !important;
+  }
+  .photoColumn {
+    width: 100% !important;
+    height: 160px !important;
+    aspect-ratio: 16 / 10 !important;
+    margin: 0 !important;
+    position: relative !important;
+  }
+  .photoCard {
+    position: static !important;
+    padding: 8px !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+    height: 100% !important;
+  }
+  .portraitImg {
+    border-radius: 6px !important;
+  }
+  .tape {
+    display: none !important;
+  }
+  .archive {
+    padding-top: 6px !important;
+    font-size: 13px !important;
+  }
+  .quoteColumn {
+    width: 100% !important;
+  }
+  .quoteCard {
+    padding: 0 !important;
+    border-bottom: none !important;
+  }
+  .quoteMark {
+    display: none !important;
+  }
+  .quoteCard p {
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 10px !important;
+    opacity: 1 !important;
+  }
+  .quoteWord {
+    opacity: 1 !important;
+  }
+  .quoteCard h3 {
+    font-size: 12px !important;
+  }
+  .note {
+    font-size: 13px !important;
+    margin-top: 6px !important;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .section { height: auto !important; transition: none; }
