@@ -39,7 +39,7 @@ export const Learning = () => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div style={{ marginBottom: "20px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>02 — Philosophy</div>
+        <div className={styles.introEyebrow} style={{ marginBottom: "20px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>02 — Philosophy</div>
         <div className={styles.learningList}>
           {learningData.map((item, index) => (
             <div key={item.word} className={styles.learningItem}>
@@ -48,7 +48,7 @@ export const Learning = () => {
                 <p className={styles.learningDesc}>{item.desc}</p>
               </div>
               <div className={styles.learningImgWrapper} style={{ transform: `translateY(${index % 2 === 0 ? '0' : '40px'})`}}>
-                <Image src={item.img} alt={item.alt} width={2048} height={1152} sizes="(max-width: 768px) 90vw, 40vw" quality={85} loading="lazy" className={styles.learningImg} />
+                <Image src={item.img} alt={item.alt} width={2048} height={1152} sizes="(max-width: 768px) 90vw, 40vw" quality={85} loading="lazy" decoding="async" className={styles.learningImg} />
               </div>
             </div>
           ))}

@@ -7,7 +7,7 @@ export const Events = () => {
   return (
     <section className={`${styles.section} ${styles.sectionSand}`} id="events">
       <div className={styles.container}>
-        <div style={{ marginBottom: "60px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>08 — Upcoming Events</div>
+        <div className={styles.introEyebrow} style={{ marginBottom: "60px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>08 — Upcoming Events</div>
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: "24px" }}>
           
           <div style={{ background: "var(--color-persimmon)", color: "var(--color-cream)", padding: "40px", borderRadius: "8px", gridRow: "span 2" }}>

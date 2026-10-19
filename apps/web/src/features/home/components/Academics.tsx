@@ -16,7 +16,7 @@ export const Academics = () => {
   return (
     <section className={`${styles.section} ${styles.sectionSand}`} id="academics">
       <div className={styles.container}>
-        <div style={{ marginBottom: "20px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>03 — Academics</div>
+        <div className={styles.introEyebrow} style={{ marginBottom: "20px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>03 — Academics</div>
         <h2 style={{ fontSize: "56px", fontFamily: "var(--font-serif)", marginBottom: "40px" }}>
           Learning isn't just subjects. It's <em style={{ color: "var(--color-persimmon)", fontStyle: "italic" }}>curiosity</em> with a timetable.
         </h2>
@@ -34,7 +34,7 @@ export const Academics = () => {
               </span>
               <span className={styles.academicDesc}>{s.desc}</span>
               <span className={styles.academicArrow} aria-hidden="true">→</span>
-              <img src={s.image} alt={`${s.name} illustration`} className={styles.academicHoverImg} onError={(event) => { event.currentTarget.style.display = "none"; }} />
+              <img src={s.image} alt={`${s.name} illustration`} loading="lazy" decoding="async" className={styles.academicHoverImg} onError={(event) => { event.currentTarget.style.display = "none"; }} />
             </div>
           ))}
         </div>

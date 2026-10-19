@@ -6,7 +6,7 @@ export const SchoolIntro = () => {
   return (
     <section className={`${styles.section} ${styles.sectionSand}`} id="about">
       <div className={styles.container}>
-        <div style={{ marginBottom: "40px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>01 — Who we are</div>
+        <div className={styles.introEyebrow} style={{ marginBottom: "40px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>01 — Who we are</div>
         <div className={styles.introContent}>
           <div className={styles.introText}>
             <h2 className={styles.introTitle}>
@@ -21,6 +21,8 @@ export const SchoolIntro = () => {
               height={1536}
               sizes="(max-width: 768px) 90vw, 42vw"
               quality={85}
+              loading="lazy"
+              decoding="async"
               className={styles.introImg1}
             />
             <Image
@@ -30,6 +32,8 @@ export const SchoolIntro = () => {
               height={1152}
               sizes="(max-width: 768px) 90vw, 48vw"
               quality={85}
+              loading="lazy"
+              decoding="async"
               className={styles.introImg2}
             />
             <div className={styles.introCaption}>

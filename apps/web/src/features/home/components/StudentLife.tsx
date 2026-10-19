@@ -156,7 +156,7 @@ export const StudentLife = () => {
       id="student-life"
     >
       <div className={styles.container}>
-        <div style={{ marginBottom: "20px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>04 — Student Life</div>
+        <div className={styles.introEyebrow} style={{ marginBottom: "20px", fontSize: "14px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>04 — Student Life</div>
         <h2 style={{ fontSize: "64px", fontFamily: "var(--font-serif)", marginBottom: "20px" }}>
           Life beyond the <em style={{ color: "var(--color-persimmon)", fontStyle: "italic" }}>classroom</em>.
         </h2>

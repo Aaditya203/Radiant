@@ -39,31 +39,33 @@ export const Admissions = () => {
 
 export const Footer = () => {
   return (
-    <footer className={`${styles.section} ${styles.sectionDark}`} style={{ paddingBottom: "40px" }}>
-      <div className={styles.container}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "60px", marginBottom: "80px" }}>
-          <div>
-            <div className={styles.logoMark} style={{ marginBottom: "24px" }}>
-              <Image src="/assets/logo.jfif" alt="Logo" width={40} height={40} className={styles.logoImg} />
+    <footer id="footer" className={`${styles.section} ${styles.sectionDark} ${styles.footer}`} style={{ paddingBottom: "40px" }}>
+      <div className={`${styles.container} ${styles.footerContainer}`}>
+        <div className={styles.footerGrid} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "60px", marginBottom: "80px" }}>
+          <div className={styles.footerBrand}>
+            <div className={`${styles.logoMark} ${styles.footerLogoMark}`} style={{ marginBottom: "24px" }}>
+              <Image src="/assets/logo.jfif" alt="Logo" width={40} height={40} className={`${styles.logoImg} ${styles.footerLogo}`} />
               <div className={styles.logoText}>
                 <span className={styles.logoTitle} style={{ color: "var(--color-cream)" }}>Radiant Public</span>
                 <span className={styles.logoSubtitle} style={{ color: "var(--color-sunflower)" }}>School</span>
               </div>
             </div>
-            <p style={{ opacity: 0.8, maxWidth: "250px" }}>A school for curious people.</p>
-            <p style={{ marginTop: "24px", fontFamily: "var(--font-hand)", color: "var(--color-sunflower)", fontSize: "24px", transform: "rotate(-5deg)" }}>see you soon!</p>
+            <p className={styles.footerTagline} style={{ opacity: 0.8, maxWidth: "250px" }}>A school for curious people.</p>
+            <p className={styles.footerSignoff} style={{ marginTop: "24px", fontFamily: "var(--font-hand)", color: "var(--color-sunflower)", fontSize: "24px", transform: "rotate(-5deg)" }}>see you soon!</p>
           </div>
           
-          <div>
-            <h4 style={{ color: "var(--color-cream)", marginBottom: "24px", opacity: 0.5, fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px" }}>Contact</h4>
-            <p style={{ opacity: 0.8, marginBottom: "16px" }}>WW6X+676, Road, behind Punjab national bank, Rewa, Bheldi, Bihar 841402</p>
-            <p style={{ opacity: 0.8, marginBottom: "8px" }}>094308 56662</p>
-            <p style={{ opacity: 0.8 }}>Call the school to enquire about admissions</p>
+          <div className={styles.footerContact}>
+            <h4 className={styles.footerHeading} style={{ color: "var(--color-cream)", marginBottom: "24px", opacity: 0.5, fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px" }}>Contact</h4>
+            <div className={styles.footerContactItems}>
+              <p style={{ opacity: 0.8, marginBottom: "16px" }}>WW6X+676, Road, behind Punjab national bank, Rewa, Bheldi, Bihar 841402</p>
+              <p className={styles.footerPhoneWrap} style={{ opacity: 0.8, marginBottom: "8px" }}><a className={styles.footerPhone} href="tel:09430856662" style={{ color: "inherit", textDecoration: "none" }}>094308 56662</a></p>
+              <p style={{ opacity: 0.8 }}>Call the school to enquire about admissions</p>
+            </div>
           </div>
 
-          <div>
-            <h4 style={{ color: "var(--color-cream)", marginBottom: "24px", opacity: 0.5, fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px" }}>Quick Links</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", opacity: 0.8 }}>
+          <div className={styles.footerLinks}>
+            <h4 className={styles.footerHeading} style={{ color: "var(--color-cream)", marginBottom: "24px", opacity: 0.5, fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px" }}>Quick Links</h4>
+            <div className={styles.footerLinkList} style={{ display: "flex", flexDirection: "column", gap: "12px", opacity: 0.8 }}>
               <a href="#about">About</a>
               <a href="#academics">Academics</a>
               <a href="#student-life">Student Life</a>
@@ -72,12 +74,12 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div>
-            <h4 style={{ color: "var(--color-cream)", marginBottom: "24px", opacity: 0.5, fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px" }}>School record</h4>
+          <div className={styles.footerRecord}>
+            <h4 className={styles.footerHeading} style={{ color: "var(--color-cream)", marginBottom: "24px", opacity: 0.5, fontSize: "14px", textTransform: "uppercase", letterSpacing: "1px" }}>School record</h4>
             <p style={{ opacity: 0.8, marginBottom: "16px" }}>UDISE+ code: 10171703602</p>
             <p style={{ opacity: 0.8, marginBottom: "32px" }}>Listed as Radiant Public School, Bheldi (Saran)</p>
             
-            <div style={{ display: "flex", gap: "16px", opacity: 0.8 }}>
+            <div className={styles.footerSocials} style={{ display: "flex", gap: "16px", opacity: 0.8 }}>
               <span>Instagram</span>
               <span>Facebook</span>
               <span>YouTube</span>
@@ -85,9 +87,8 @@ export const Footer = () => {
           </div>
         </div>
         
-        <div className={styles.sectionDivider} style={{ borderColor: "rgba(251, 245, 234, 0.1)", paddingTop: "24px", display: "flex", justifyContent: "space-between", fontSize: "14px", opacity: 0.6 }}>
-          <p>© {new Date().getFullYear()} Radiant Public School. All rights reserved.</p>
-          <p>Bheldi · Saran · Bihar</p>
+        <div className={`${styles.sectionDivider} ${styles.footerBottom}`} style={{ borderColor: "rgba(251, 245, 234, 0.1)", paddingTop: "24px", display: "flex", justifyContent: "space-between", fontSize: "14px", opacity: 0.6 }}>
+          <p className={styles.footerCopyright} style={{ display: "flex", width: "100%", justifyContent: "space-between" }}><span>© {new Date().getFullYear()} Radiant Public School. All rights reserved.</span><span>Bheldi · Saran · Bihar</span></p>
         </div>
       </div>
     </footer>
