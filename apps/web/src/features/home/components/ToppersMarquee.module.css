@@ -1,3 +1,9 @@
+/* ====================================================================
+   ToppersMarquee / Student Achievements section
+   All desktop styles are below, unchanged.
+   Mobile-only rules live inside @media (max-width: 767px).
+   ==================================================================== */
+
 .section {
   padding: clamp(64px, 8vw, 112px) 24px;
   background: var(--color-sunflower, #F2B632);
@@ -34,6 +40,9 @@
 .sourceLink { display: inline-block; margin-top: 14px; color: #9a341d; font-family: var(--font-sans); font-size: 13px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .sourceLink:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
+/* swipeHint hidden on desktop; shown only via mobile MQ below */
+.swipeHint { display: none; }
+
 @media (max-width: 1050px) {
   .studentGrid, .publicGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .studentCard { grid-template-columns: minmax(112px, 36%) 1fr; }
@@ -53,4 +62,359 @@
 
 @media (prefers-reduced-motion: reduce) {
   .studentCard, .publicCard, .publicImage img { transition: none; }
+}
+
+/* ============================================================
+   MOBILE-ONLY OVERRIDES  <=767px
+   Desktop (>= 768px) is untouched above this comment.
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* --- Section shell --- */
+  .section {
+    padding: 28px 16px 8px;
+    padding-inline: 16px;
+    scroll-margin-top: calc(var(--header-h, 56px) + 8px);
+  }
+  .container { min-width: 0; }
+
+  /* --- Header --- */
+  .header {
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .eyebrow {
+    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 6.8vw, 2rem);
+    line-height: 1.1;
+    margin: 0 0 8px;
+  }
+
+  .introBlock { display: flex; min-width: 0; align-items: flex-end; gap: 8px; }
+
+  .intro {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin: 0;
+    color: rgb(31 31 31 / 84%);
+    font-size: 14px;
+    line-height: 1.45;
+    text-align: left;
+    max-width: 100%;
+  }
+  .introExpanded { display: block; overflow: visible; }
+  .readMore {
+    display: inline-flex;
+    min-height: 32px;
+    flex: 0 0 auto;
+    align-items: center;
+    margin-top: 2px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-ink, #1f1f1f);
+    font: 700 12px/1.2 var(--font-sans);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .readMore:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+  /* --- Sub-headings --- */
+  .groupTitle {
+    font-size: 1.15rem;
+    margin: 16px 0 10px;
+  }
+  .groupTitle::after {
+    display: block;
+    width: 36px;
+    height: 2px;
+    margin-top: 7px;
+    background: var(--color-ink, #1f1f1f);
+    content: "";
+  }
+
+  /* ---- Academic achievements: 2-column grid ---- */
+  .studentGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+    align-items: stretch;
+  }
+
+  /* Default card: vertical (photo top, text below) */
+  .studentCard {
+    display: flex;
+    flex-direction: column;
+    /* unset the desktop grid-template-columns */
+    grid-template-columns: unset;
+    min-height: unset;
+    border: 2px solid var(--color-ink, #1f1f1f);
+    box-shadow: 3px 3px 0 var(--color-ink, #1f1f1f);
+    border-radius: 14px;
+    align-self: stretch;
+  }
+
+  .studentCard:hover,
+  .studentCard:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0 var(--color-ink, #1f1f1f);
+  }
+
+  /* Photo: top, portrait-ish so faces aren't cropped */
+  .portrait {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: unset;
+    overflow: hidden;
+    background: #f6dec6;
+    flex-shrink: 0;
+  }
+
+  .portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* Text block under photo */
+  .studentInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 10px 12px 12px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .cardEyebrow {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+  }
+
+  .categoryFull { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+  .categoryShort { display: inline; }
+
+  .studentName {
+    min-height: 2.4em;
+    font-size: 15px;
+    line-height: 1.2;
+    margin: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .percentage {
+    font-size: 22px;
+    line-height: 1;
+    margin-top: auto;
+  }
+
+  .result {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 4px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Featured card (school topper): span both columns, horizontal layout */
+  .featuredCard {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: stretch;
+    background: #fff1c9;
+    min-height: 140px;
+  }
+
+  .featuredCard .portrait {
+    width: 38%;
+    aspect-ratio: unset;
+    min-height: 140px;
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+
+  .featuredCard .studentInfo {
+    flex: 1;
+    gap: 4px;
+    min-width: 0;
+    padding: 10px 72px 12px 12px;
+    justify-content: center;
+  }
+
+  .featuredCard .portrait img { object-position: top center; }
+
+  .featuredCard .studentName {
+    font-size: 16px;
+    line-height: 1.15;
+  }
+
+  .featuredCard .percentage {
+    font-size: 28px;
+  }
+
+  .featuredCard .cardEyebrow {
+    width: 100%;
+    font-size: clamp(8px, 2.5vw, 10px);
+    letter-spacing: 0.04em;
+  }
+
+  .featuredCard .categoryShort { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .featuredCard .percentage { margin-top: 0; }
+
+  .featuredCard .result {
+    max-width: 100%;
+    margin-top: 2px;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .studentCard:not(.featuredCard) .percentage {
+    margin-top: auto;
+  }
+
+  /* ---- Public competition results: horizontal swipe carousel ---- */
+  .publicGrid {
+    /* Override grid from 620px MQ */
+    display: flex;
+    grid-template-columns: unset;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    /* Right pad gives a peek of the next card */
+    padding-inline: 0 40px;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Undo margin-bottom override from 620px MQ */
+    margin-bottom: 0;
+  }
+
+  .publicGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .publicCard {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--color-ink, #1f1f1f);
+    box-shadow: 3px 3px 0 var(--color-ink, #1f1f1f);
+    border-radius: 14px;
+    /* Prevent publicCard:hover from lifting in a swipe context */
+    transition: none;
+  }
+
+  .publicImage {
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+  }
+
+  .illustrativeTag {
+    font-size: 10px;
+    padding: 4px 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .publicInfo {
+    padding: 12px;
+  }
+
+  .publicInfo .studentName {
+    font-size: 16px;
+  }
+
+  /* "View Bihar result" tap target >= 44px */
+  .sourceLink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 8px;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* Swipe hint label revealed on mobile */
+  .swipeHint {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgb(31 31 31 / 55%);
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* ---- Extra-small phones (<=380px) ---- */
+@media (max-width: 380px) {
+  .studentCard,
+  .featuredCard {
+    border-radius: 12px;
+  }
+
+  .studentInfo {
+    padding: 8px 10px;
+  }
+
+  .studentName {
+    font-size: 15px;
+  }
+
+  .percentage {
+    font-size: 22px;
+  }
+
+  .cardEyebrow {
+    font-size: 9.5px;
+  }
+
+  .result {
+    font-size: 10.5px;
+  }
+
+  .featuredCard .portrait {
+    width: 38%;
+  }
+
+  .featuredCard .studentName {
+    font-size: 16px;
+  }
+
+  .featuredCard .percentage {
+    font-size: 28px;
+  }
 }

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./ToppersMarquee.module.css";
 
@@ -93,6 +96,10 @@ const studentResults = [
   },
 ];
 
+const studentResultsByScore = [...studentResults].sort(
+  (first, second) => Number.parseFloat(second.percentage) - Number.parseFloat(first.percentage),
+);
+
 const publicResults = [
   {
     name: "Anshu Raj",
@@ -114,24 +121,53 @@ const publicResults = [
   },
 ];
 
-export const ToppersMarquee = () => (
+export const ToppersMarquee = () => {
+  const [introExpanded, setIntroExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return (
   <section className={styles.section} id="achievements" aria-labelledby="achievements-title">
     <div className={styles.container}>
       <header className={styles.header}>
         <span className={styles.eyebrow}>EFFORT WORTH CELEBRATING</span>
         <h2 className={styles.title} id="achievements-title">Student achievements</h2>
-        <p className={styles.intro}>Recognising academic milestones, public competition results, and the drive to keep growing.</p>
+        <div className={styles.introBlock}>
+          <p className={`${styles.intro} ${introExpanded ? styles.introExpanded : ""}`} id="achievements-intro">Recognising academic milestones, public competition results, and the drive to keep growing.</p>
+          {isMobile && <button className={styles.readMore} type="button" aria-expanded={introExpanded} aria-controls="achievements-intro" onClick={() => setIntroExpanded((expanded) => !expanded)}>{introExpanded ? "Read less" : "Read more"}</button>}
+        </div>
       </header>
 
       <h3 className={styles.groupTitle}>Academic achievements</h3>
       <div className={styles.studentGrid}>
-        {studentResults.map((student) => (
+        {studentResultsByScore.map((student) => (
           <article className={`${styles.studentCard} ${student.featured ? styles.featuredCard : ""}`} key={student.name}>
             <div className={styles.portrait}>
-              <Image src={student.image} alt={student.alt} width={720} height={960} sizes="(max-width: 700px) 42vw, (max-width: 1100px) 28vw, 15vw" quality={90} />
+              <Image
+                src={student.image}
+                alt={student.alt}
+                width={720}
+                height={960}
+                sizes="(max-width: 767px) 42vw, (max-width: 700px) 42vw, (max-width: 1100px) 28vw, 15vw"
+                quality={90}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className={styles.studentInfo}>
-              <span className={styles.cardEyebrow}>{student.category}</span>
+              <span className={styles.cardEyebrow}>
+                {student.featured ? <>
+                  <span className={styles.categoryFull}>{student.category}</span>
+                  <span className={styles.categoryShort} aria-hidden="true">CLASS 10 · CBSE 2026</span>
+                </> : student.category}
+              </span>
               <h4 className={styles.studentName}>{student.name}</h4>
               <strong className={styles.percentage}>{student.percentage}</strong>
               {student.result && <p className={styles.result}>{student.result}</p>}
@@ -145,7 +181,16 @@ export const ToppersMarquee = () => (
         {publicResults.map((result) => (
           <article className={styles.publicCard} key={result.name}>
             <div className={styles.publicImage}>
-              <Image src={result.image} alt={result.alt} width={1440} height={1024} sizes="(max-width: 700px) 90vw, (max-width: 1100px) 44vw, 30vw" quality={88} />
+              <Image
+                src={result.image}
+                alt={result.alt}
+                width={1440}
+                height={1024}
+                sizes="(max-width: 767px) 85vw, (max-width: 1100px) 44vw, 30vw"
+                quality={88}
+                loading="lazy"
+                decoding="async"
+              />
               <span className={styles.illustrativeTag}>Illustrative image</span>
             </div>
             <div className={styles.publicInfo}>
@@ -158,7 +203,16 @@ export const ToppersMarquee = () => (
         ))}
         <article className={styles.publicCard}>
           <div className={styles.publicImage}>
-            <Image src="/images/achievements/police-week-2022.webp" alt="Radiant Public School students present posters to visitors during Bihar Police Week 2022" width={3840} height={2890} sizes="(max-width: 700px) 90vw, (max-width: 1100px) 44vw, 30vw" quality={90} />
+            <Image
+              src="/images/achievements/police-week-2022.webp"
+              alt="Radiant Public School students present posters to visitors during Bihar Police Week 2022"
+              width={3840}
+              height={2890}
+              sizes="(max-width: 767px) 85vw, (max-width: 1100px) 44vw, 30vw"
+              quality={90}
+              loading="lazy"
+              decoding="async"
+            />
             <span className={styles.illustrativeTag}>School event · 2022</span>
           </div>
           <div className={styles.publicInfo}>
@@ -169,16 +223,28 @@ export const ToppersMarquee = () => (
         </article>
         <article className={styles.publicCard}>
           <div className={styles.publicImage}>
-            <Image src="/images/achievements/badminton-illustrative.webp" alt="Illustrative image of an Indian student practising badminton in a school gym" width={1440} height={1024} sizes="(max-width: 700px) 90vw, (max-width: 1100px) 44vw, 30vw" quality={88} />
+            <Image
+              src="/images/achievements/badminton-illustrative.webp"
+              alt="Illustrative image of an Indian student practising badminton in a school gym"
+              width={1440}
+              height={1024}
+              sizes="(max-width: 767px) 85vw, (max-width: 1100px) 44vw, 30vw"
+              quality={88}
+              loading="lazy"
+              decoding="async"
+            />
             <span className={styles.illustrativeTag}>Illustrative image</span>
           </div>
           <div className={styles.publicInfo}>
             <span className={styles.cardEyebrow}>SPORTS · BADMINTON</span>
             <h4 className={styles.studentName}>Inter-school badminton winner</h4>
-            <p className={styles.result}>Winner’s name, event, and year can be added when you share those details.</p>
+            <p className={styles.result}>Winner&apos;s name, event, and year can be added when you share those details.</p>
           </div>
         </article>
       </div>
+      {/* Mobile-only swipe hint; hidden on desktop via CSS */}
+      <p className={styles.swipeHint} aria-hidden="true">swipe to see more →</p>
     </div>
   </section>
-);
+  );
+};
