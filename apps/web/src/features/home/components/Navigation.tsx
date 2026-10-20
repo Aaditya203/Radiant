@@ -48,7 +48,7 @@ export const Navigation = ({ hero = "light" }: { hero?: "dark" | "light" }) => {
           <div className={styles.navBrand}>
             <div className={styles.logoMark}>
               <span className={styles.logoBadge}>
-                <Image src="/assets/logo.jfif" alt="Radiant Public Logo" width={32} height={32} className={styles.logoImg} />
+                <Image src="/images/logo.png" alt="Radiant Public Logo" width={32} height={32} className={styles.logoImg} priority />
               </span>
               <div className={styles.logoText}>
                 <span className={styles.logoTitle}>Radiant Public</span>

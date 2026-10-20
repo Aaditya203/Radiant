@@ -44,7 +44,7 @@ export const Footer = () => {
         <div className={styles.footerGrid} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "60px", marginBottom: "80px" }}>
           <div className={styles.footerBrand}>
             <div className={`${styles.logoMark} ${styles.footerLogoMark}`} style={{ marginBottom: "24px" }}>
-              <Image src="/assets/logo.jfif" alt="Logo" width={40} height={40} className={`${styles.logoImg} ${styles.footerLogo}`} />
+              <Image src="/images/logo.png" alt="Logo" width={40} height={40} className={`${styles.logoImg} ${styles.footerLogo}`} />
               <div className={styles.logoText}>
                 <span className={styles.logoTitle} style={{ color: "var(--color-cream)" }}>Radiant Public</span>
                 <span className={styles.logoSubtitle} style={{ color: "var(--color-sunflower)" }}>School</span>
